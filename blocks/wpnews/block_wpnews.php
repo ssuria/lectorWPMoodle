@@ -210,7 +210,16 @@ class block_wpnews extends block_base {
      * @return string
      */
     private function render_posts($posts, $config) {
-        global $OUTPUT, $PAGE;
+        global $OUTPUT, $PAGE, $CFG;
+
+        // Detect Moodle version and load appropriate styles.
+        $moodleversion = $CFG->version;
+        $ismoodle5 = ($moodleversion >= 2024100100); // Moodle 5.0 version code.
+
+        // Load Bootstrap 5 compatible styles for Moodle 5+.
+        if ($ismoodle5) {
+            $PAGE->requires->css('/blocks/wpnews/styles_bs5.css');
+        }
 
         // Add RemUI-specific CSS if RemUI theme is active.
         if ($PAGE->theme->name === 'remui') {

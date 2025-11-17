@@ -25,7 +25,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'block_wpnews';
-$plugin->version   = 2024111701;           // YYYYMMDDXX format.
-$plugin->requires  = 2024042200;           // Moodle 4.5.
+$plugin->version   = 2024111702;           // YYYYMMDDXX format.
+$plugin->requires  = 2024042200;           // Moodle 4.5+, compatible with Moodle 5.0+.
+$plugin->supported = [405, 500];           // Moodle 4.5 to 5.0.
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = 'v1.1.0';
+$plugin->release   = 'v1.2.0';

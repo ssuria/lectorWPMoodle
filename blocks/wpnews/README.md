@@ -19,10 +19,18 @@ A Moodle block plugin that displays news posts from a WordPress site using the W
 
 ## Requirements
 
-- Moodle 4.5 or higher
-- PHP 8.0 or higher
+- **Moodle 4.5+** (compatible with Moodle 5.0+)
+- **PHP 8.0+** (PHP 8.1+ recommended for Moodle 5.0)
 - WordPress site with REST API v2 enabled
 - cURL extension enabled in PHP
+
+### Moodle 5.0 Ready
+
+This plugin is **fully compatible with Moodle 5.0**:
+- ✅ Auto-detects Bootstrap 5
+- ✅ Compatible with PHP 8.1+
+- ✅ No configuration changes needed
+- 📖 See [MOODLE5_MIGRATION.md](MOODLE5_MIGRATION.md) for migration guide
 
 ## Installation
 
@@ -234,14 +242,16 @@ The plugin automatically loads `styles_remui.css` when RemUI theme is detected. 
 
 ```
 blocks/wpnews/
-├── version.php              # Plugin version and metadata
-├── block_wpnews.php         # Main block class
+├── version.php              # Plugin version and metadata (v1.2.0)
+├── block_wpnews.php         # Main block class (Moodle 4.5/5.0 compatible)
 ├── edit_form.php           # Instance configuration form
 ├── settings.php            # Global settings
-├── styles.css              # Standard block styles
+├── styles.css              # Standard block styles (Bootstrap 4)
+├── styles_bs5.css          # Bootstrap 5 styles (auto-loaded Moodle 5+)
 ├── styles_remui.css        # RemUI-optimized styles (auto-loaded)
 ├── README.md               # Main documentation
 ├── REMUI_INTEGRATION.md    # RemUI integration guide
+├── MOODLE5_MIGRATION.md    # Moodle 5.0 migration guide
 ├── lang/
 │   ├── en/
 │   │   └── block_wpnews.php # English strings
@@ -341,6 +351,18 @@ This plugin is licensed under the GNU General Public License v3.0 or later.
 - **Compatible Themes**: RemUI, Boost, and most standard themes
 
 ## Changelog
+
+### Version 1.2.0 (2024-11-17) - Moodle 5.0 Ready
+- 🚀 **Full Moodle 5.0 compatibility**
+- ✨ Bootstrap 5 support with auto-detection
+- ✨ Backward compatible with Moodle 4.5 (Bootstrap 4)
+- ✨ Dual Bootstrap 4/5 templates
+- ✨ Enhanced dark mode for Moodle 5
+- ✨ PHP 8.1+ ready
+- 📖 Added MOODLE5_MIGRATION.md guide
+- 🔧 Auto-detects Moodle version and loads appropriate styles
+- 🎨 Improved accessibility (focus-visible, reduced motion)
+- 📋 Version range support: Moodle 4.5 to 5.0
 
 ### Version 1.1.0 (2024-11-17)
 - ✨ Enhanced RemUI theme integration

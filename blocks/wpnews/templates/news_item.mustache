@@ -17,7 +17,8 @@
 {{!
     @template block_wpnews/news_item
 
-    WordPress news item template for RemUI theme.
+    WordPress news item template compatible with Bootstrap 4 and 5.
+    Works with Moodle 4.5+ (Bootstrap 4) and Moodle 5.0+ (Bootstrap 5).
 
     Context variables required for this template:
     * title - Post title
@@ -67,8 +68,8 @@
             {{#categories}}
             <div class="wpnews-categories mb-2">
                 {{#.}}
-                <span class="badge badge-primary badge-pill mr-1">
-                    <i class="fa fa-tag mr-1"></i>{{name}}
+                <span class="badge bg-primary rounded-pill me-1 mr-1">
+                    <i class="fa fa-tag me-1 mr-1"></i>{{name}}
                 </span>
                 {{/.}}
             </div>
@@ -84,7 +85,7 @@
             {{#showdate}}
             <div class="wpnews-meta mb-2">
                 <small class="text-muted d-flex align-items-center">
-                    <i class="fa fa-calendar mr-2"></i>
+                    <i class="fa fa-calendar me-2 mr-2"></i>
                     <time class="wpnews-date">{{date}}</time>
                 </small>
             </div>
@@ -100,7 +101,7 @@
                 <a href="{{{link}}}" target="_blank" rel="noopener noreferrer"
                    class="btn btn-primary btn-sm wpnews-readmore">
                     {{readmore}}
-                    <i class="fa fa-arrow-right ml-1"></i>
+                    <i class="fa fa-arrow-right ms-1 ml-1"></i>
                 </a>
             </div>
         </div>
