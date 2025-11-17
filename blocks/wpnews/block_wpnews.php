@@ -203,27 +203,36 @@ class block_wpnews extends block_base {
     }
 
     /**
-     * Render posts HTML.
+     * Render posts HTML using Mustache templates.
      *
      * @param array $posts
      * @param stdClass $config
      * @return string
      */
     private function render_posts($posts, $config) {
-        global $OUTPUT;
+        global $OUTPUT, $PAGE;
 
-        $output = '';
-
-        $layoutclass = ($config->layout === 'grid') ? 'wpnews-grid' : 'wpnews-list';
-        $output .= html_writer::start_div('block-wpnews-container ' . $layoutclass);
-
-        foreach ($posts as $post) {
-            $output .= $this->render_single_post($post, $config);
+        // Add RemUI-specific CSS if RemUI theme is active.
+        if ($PAGE->theme->name === 'remui') {
+            $PAGE->requires->css('/blocks/wpnews/styles_remui.css');
         }
 
-        $output .= html_writer::end_div();
+        // Use renderer for better template support.
+        $renderer = $PAGE->get_renderer('block_wpnews');
 
-        return $output;
+        $newsitems = [];
+        foreach ($posts as $post) {
+            $newsitem = new \block_wpnews\output\news_item($post, $config);
+            $newsitems[] = $renderer->render($newsitem);
+        }
+
+        // Render container.
+        $data = [
+            'isgrid' => ($config->layout === 'grid'),
+            'newsitems' => $newsitems,
+        ];
+
+        return $OUTPUT->render_from_template('block_wpnews/news_container', $data);
     }
 
     /**

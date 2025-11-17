@@ -8,12 +8,14 @@ A Moodle block plugin that displays news posts from a WordPress site using the W
 - 📰 Display latest posts with customizable options
 - 🖼️ Show featured images in multiple sizes
 - 📱 Responsive design (list or grid layout)
-- 🎨 Compatible with RemUI theme and Bootstrap 4
+- 🎨 **Specially optimized for RemUI theme** with automatic style detection
 - 💾 Built-in caching system for performance
 - 🔐 Support for authentication (private WordPress sites)
 - 🌍 Multilingual support (English & Spanish)
 - ⚙️ Per-instance configuration
 - 🎯 Multiple instances support
+- 🎭 Mustache templates for flexible rendering
+- 🌙 Dark mode support (RemUI compatible)
 
 ## Requirements
 
@@ -169,11 +171,38 @@ The plugin defines three capabilities:
 - `block/wpnews:myaddinstance` - Add block to My Moodle (users)
 - `block/wpnews:viewcontent` - View block content (all users)
 
+## 🎨 RemUI Theme Integration
+
+This block is **specially optimized for Edwiser RemUI theme** with:
+
+- ✅ Automatic detection and loading of RemUI-specific styles
+- ✅ Uses RemUI color variables (`--primary`, `--primary-dark`)
+- ✅ Dark mode support compatible with RemUI
+- ✅ Modern card designs with RemUI aesthetics
+- ✅ Responsive layouts optimized for RemUI regions
+- ✅ Mustache templates for better rendering
+
+### How to Use with RemUI
+
+1. **Add the block** to your page (Turn editing on → Add block → WordPress News)
+2. **Configure** with your WordPress URL
+3. **Enjoy** automatic RemUI styling - no additional configuration needed!
+
+**📖 For detailed RemUI integration guide, see [REMUI_INTEGRATION.md](REMUI_INTEGRATION.md)**
+
+### Does it appear in Edwiser Page Builder?
+
+**No**, this is a standard Moodle block, not a Page Builder widget. However:
+- ✅ It works perfectly in all RemUI regions
+- ✅ Has beautiful RemUI-optimized styling
+- ✅ Can be added to home page, dashboard, courses, etc.
+- 📖 See [REMUI_INTEGRATION.md](REMUI_INTEGRATION.md) for creating a custom widget (advanced)
+
 ## Styling and Customization
 
 ### Custom CSS
 
-Add custom CSS in **Site administration > Appearance > Additional HTML**:
+Add custom CSS in **Site administration > Appearance > Additional HTML** (or RemUI Custom CSS):
 
 ```css
 /* Example: Change card background */
@@ -185,11 +214,21 @@ Add custom CSS in **Site administration > Appearance > Additional HTML**:
 .wpnews-item .card-title {
     font-size: 1.3rem;
 }
+
+/* Example: Use your brand colors */
+.block_wpnews .wpnews-readmore {
+    background: linear-gradient(135deg, #your-color 0%, #your-color-dark 100%);
+}
 ```
 
-### RemUI Theme Integration
+### RemUI-Specific Customization
 
-The block is fully compatible with RemUI theme and uses Bootstrap 4 classes. Custom RemUI-specific styles are included.
+The plugin automatically loads `styles_remui.css` when RemUI theme is detected. This includes:
+- Modern card designs
+- Smooth animations
+- Glassmorphism effects
+- Dark mode support
+- RemUI color integration
 
 ## File Structure
 
@@ -199,26 +238,34 @@ blocks/wpnews/
 ├── block_wpnews.php         # Main block class
 ├── edit_form.php           # Instance configuration form
 ├── settings.php            # Global settings
-├── styles.css              # Block styles
-├── README.md               # This file
+├── styles.css              # Standard block styles
+├── styles_remui.css        # RemUI-optimized styles (auto-loaded)
+├── README.md               # Main documentation
+├── REMUI_INTEGRATION.md    # RemUI integration guide
 ├── lang/
 │   ├── en/
 │   │   └── block_wpnews.php # English strings
 │   └── es/
 │       └── block_wpnews.php # Spanish strings
+├── templates/              # Mustache templates
+│   ├── news_item.mustache       # Single news item template
+│   └── news_container.mustache  # Container template
 ├── classes/
 │   ├── api/
 │   │   └── wordpress_client.php  # WordPress API client
 │   ├── cache/
 │   │   └── cache_handler.php     # Cache management
-│   └── output/
-│       ├── renderer.php          # Renderer class
-│       └── news_item.php         # News item renderable
+│   ├── output/
+│   │   ├── renderer.php          # Renderer class
+│   │   └── news_item.php         # News item renderable
+│   └── privacy/
+│       └── provider.php          # Privacy API implementation
 ├── db/
 │   ├── access.php          # Capability definitions
 │   └── caches.php          # Cache definitions
 ├── amd/src/                # JavaScript (future use)
-└── pix/                    # Icons (future use)
+└── pix/
+    └── icon.svg            # Block icon
 ```
 
 ## API Reference
@@ -295,13 +342,24 @@ This plugin is licensed under the GNU General Public License v3.0 or later.
 
 ## Changelog
 
+### Version 1.1.0 (2024-11-17)
+- ✨ Enhanced RemUI theme integration
+- ✨ Added Mustache templates for better rendering
+- ✨ RemUI-specific CSS with auto-detection
+- ✨ Dark mode support for RemUI
+- ✨ Modern card designs with animations
+- ✨ Comprehensive RemUI integration documentation
+- 🎨 Improved responsive layouts
+- 🎨 Better typography and spacing
+- 📖 Added REMUI_INTEGRATION.md guide
+
 ### Version 1.0.0 (2024-11-17)
 - Initial release
 - WordPress REST API v2 integration
 - Configurable display options
 - Caching system
 - Authentication support
-- RemUI theme compatibility
+- Basic RemUI theme compatibility
 - English and Spanish translations
 
 ---

@@ -38,7 +38,7 @@ use plugin_renderer_base;
 class renderer extends plugin_renderer_base {
 
     /**
-     * Render news items.
+     * Render news items using Mustache template.
      *
      * @param news_item $newsitem Renderable news item object
      * @return string HTML output
@@ -46,6 +46,16 @@ class renderer extends plugin_renderer_base {
     public function render_news_item(news_item $newsitem) {
         $data = $newsitem->export_for_template($this);
         return $this->render_from_template('block_wpnews/news_item', $data);
+    }
+
+    /**
+     * Render method called by the rendering system.
+     *
+     * @param news_item $newsitem
+     * @return string
+     */
+    protected function render_block_wpnews_output_news_item(news_item $newsitem) {
+        return $this->render_news_item($newsitem);
     }
 
     /**
