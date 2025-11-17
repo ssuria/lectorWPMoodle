@@ -1,0 +1,248 @@
+/**
+ * Styles for WordPress News block.
+ *
+ * Compatible with RemUI theme and Bootstrap 4.
+ *
+ * @package    block_wpnews
+ * @copyright  2024 Your Name
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+/* Block container */
+.block-wpnews-container {
+    padding: 0;
+    margin: 0;
+}
+
+/* List layout */
+.block-wpnews-container.wpnews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Grid layout */
+.block-wpnews-container.wpnews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+/* Individual news item */
+.wpnews-item {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: #fff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.wpnews-item:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Featured image */
+.wpnews-image {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: #f8f9fa;
+}
+
+.wpnews-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.wpnews-item:hover .wpnews-image img {
+    transform: scale(1.05);
+}
+
+/* Card body */
+.wpnews-item .card-body {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Title */
+.wpnews-title {
+    color: #212529;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.wpnews-title:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.wpnews-item .card-title {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+/* Date */
+.wpnews-date {
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Categories */
+.wpnews-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.wpnews-categories .badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+}
+
+/* Excerpt */
+.wpnews-excerpt {
+    color: #495057;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+/* Read more button */
+.wpnews-item .btn {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .block-wpnews-container.wpnews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wpnews-item .card-title {
+        font-size: 1rem;
+    }
+
+    .wpnews-excerpt {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .block-wpnews-container.wpnews-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+/* RemUI specific adjustments */
+.remui-theme .wpnews-item {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.remui-theme .wpnews-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.remui-theme .wpnews-title:hover {
+    color: var(--primary, #0056b3);
+}
+
+/* Dark mode support (if RemUI uses dark mode) */
+@media (prefers-color-scheme: dark) {
+    .wpnews-item {
+        background: #2d3748;
+        border-color: #4a5568;
+    }
+
+    .wpnews-title {
+        color: #e2e8f0;
+    }
+
+    .wpnews-title:hover {
+        color: #63b3ed;
+    }
+
+    .wpnews-date,
+    .wpnews-excerpt {
+        color: #cbd5e0;
+    }
+
+    .wpnews-image {
+        background: #1a202c;
+    }
+}
+
+/* Loading state */
+.wpnews-loading {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+}
+
+.wpnews-loading::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #007bff;
+    border-radius: 50%;
+    animation: wpnews-spinner 0.8s linear infinite;
+}
+
+@keyframes wpnews-spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error and info messages */
+.block_wpnews .alert {
+    margin: 0.5rem;
+}
+
+/* Ensure proper spacing in block */
+.block_wpnews .content {
+    padding: 0.5rem;
+}
+
+/* No image fallback */
+.wpnews-item.no-image .card-body {
+    padding-top: 1.5rem;
+}
+
+/* Accessibility improvements */
+.wpnews-title:focus {
+    outline: 2px solid #0056b3;
+    outline-offset: 2px;
+}
+
+.wpnews-item .btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Print styles */
+@media print {
+    .wpnews-item {
+        page-break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #000;
+    }
+
+    .wpnews-item .btn {
+        display: none;
+    }
+}
